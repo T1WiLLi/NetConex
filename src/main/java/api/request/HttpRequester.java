@@ -47,7 +47,7 @@ public class HttpRequester implements Methods {
     public HttpRequester(String baseUrl) {
         this.baseUrl = baseUrl;
         this.objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
-        this.timeout = 5000;
+        this.timeout = Integer.MAX_VALUE;
     }
 
     /**
