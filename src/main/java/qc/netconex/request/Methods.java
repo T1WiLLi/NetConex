@@ -1,8 +1,8 @@
-package api.request.request;
+package qc.netconex.request;
 
 import java.util.Map;
 
-import api.request.error.ApiRequestException;
+import qc.netconex.error.ApiRequestException;
 
 /**
  * The Methods interface defines common methods to be implemented by HTTP

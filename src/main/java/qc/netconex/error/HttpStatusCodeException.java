@@ -1,4 +1,4 @@
-package api.request.error;
+package qc.netconex.error;
 
 /**
  * Exception class for HTTP status code errors in API requests.

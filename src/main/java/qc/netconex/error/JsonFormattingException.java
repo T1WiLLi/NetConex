@@ -1,21 +1,21 @@
-package api.request.error;
+package qc.netconex.error;
 
 /**
- * Custom exception class for general API request errors.
+ * Exception class for errors during JSON formatting.
  */
-public class ApiRequestException extends Exception {
+public class JsonFormattingException extends ApiRequestException {
     /**
-     * Constructs an ApiRequestException with the specified detail message.
+     * Constructs a JsonFormattingException with the specified detail message.
      * 
      * @param message The detail message (which is saved for later retrieval by the
      *                getMessage() method).
      */
-    public ApiRequestException(String message) {
+    public JsonFormattingException(String message) {
         super(message);
     }
 
     /**
-     * Constructs an ApiRequestException with the specified detail message and
+     * Constructs a JsonFormattingException with the specified detail message and
      * cause.
      * 
      * @param message The detail message (which is saved for later retrieval by the
@@ -23,7 +23,7 @@ public class ApiRequestException extends Exception {
      * @param cause   The cause (which is saved for later retrieval by the
      *                getCause() method).
      */
-    public ApiRequestException(String message, Throwable cause) {
+    public JsonFormattingException(String message, Throwable cause) {
         super(message, cause);
     }
 }

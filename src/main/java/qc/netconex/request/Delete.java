@@ -1,12 +1,12 @@
-package api.request.request;
+package qc.netconex.request;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.util.concurrent.CompletableFuture;
 
-import api.request.HttpRequester;
-import api.request.error.ApiRequestException;
+import qc.netconex.HttpRequester;
+import qc.netconex.error.ApiRequestException;
 
 /**
  * The Delete class provides functionality for executing DELETE requests.

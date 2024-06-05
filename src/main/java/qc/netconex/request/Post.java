@@ -1,4 +1,4 @@
-package api.request.request;
+package qc.netconex.request;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -10,8 +10,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
-import api.request.HttpRequester;
-import api.request.error.ApiRequestException;
+import qc.netconex.HttpRequester;
+import qc.netconex.error.ApiRequestException;
 
 /**
  * The Post class provides functionality for executing POST requests.

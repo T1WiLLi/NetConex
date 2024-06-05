@@ -1,7 +1,7 @@
-package api.request;
+package qc.netconex;
 
-import api.request.model.Student;
-import api.request.request.Get;
+import qc.netconex.model.Student;
+import qc.netconex.request.Get;
 
 public class Main {
     public static void main(String[] args) throws Exception {

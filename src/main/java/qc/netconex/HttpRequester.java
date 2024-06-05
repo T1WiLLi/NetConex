@@ -1,4 +1,4 @@
-package api.request;
+package qc.netconex;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,14 +17,14 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
-import api.request.error.ApiRequestException;
-import api.request.error.JsonFormattingException;
-import api.request.error.JsonParsingException;
-import api.request.request.Delete;
-import api.request.request.Get;
-import api.request.request.Methods;
-import api.request.request.Post;
-import api.request.request.Put;
+import qc.netconex.error.ApiRequestException;
+import qc.netconex.error.JsonFormattingException;
+import qc.netconex.error.JsonParsingException;
+import qc.netconex.request.Delete;
+import qc.netconex.request.Get;
+import qc.netconex.request.Methods;
+import qc.netconex.request.Post;
+import qc.netconex.request.Put;
 
 /**
  * The HttpRequester class provides functionality to make HTTP requests.
