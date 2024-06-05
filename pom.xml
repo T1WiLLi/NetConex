@@ -4,7 +4,7 @@
 
     <groupId>com.example</groupId>
     <artifactId>netconex</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>NetConex</name>
     <description>NetConex is a Java library that provides easy-to-use functionality for making HTTP requests, handling errors, and configuring timeouts and retries.</description>
     <url>https://github.com/T1WiLLi/NetConex</url>
@@ -28,7 +28,7 @@
         <connection>scm:git:https://github.com/T1WiLLi/NetConex.git</connection>
         <developerConnection>scm:git:https://github.com/T1WiLLi/NetConex.git</developerConnection>
         <url>https://github.com/T1WiLLi/NetConex</url>
-      <tag>netconex-1.0.0</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <properties>
