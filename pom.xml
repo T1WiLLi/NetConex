@@ -1,35 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>api.request</groupId>
-    <artifactId>fetcher</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>com.example</groupId>
+    <artifactId>netconex</artifactId>
+    <version>1.0.0</version>
+    <name>NetConex</name>
+    <description>NetConex is a Java library that provides easy-to-use functionality for making HTTP requests, handling errors, and configuring timeouts and retries.</description>
+    <url>https://github.com/T1WiLLi/NetConex</url>
 
-    <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-    </properties>
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/licenses/MIT</url>
+        </license>
+    </licenses>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.13.3</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jsr310</artifactId>
-            <version>2.13.3</version>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.32</version>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
+    <developers>
+        <developer>
+            <id>T1WiLLi</id>
+            <name>William Beaudin</name>
+            <email>william.beaudin@example.com</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:https://github.com/T1WiLLi/NetConex.git</connection>
+        <developerConnection>scm:git:https://github.com/T1WiLLi/NetConex.git</developerConnection>
+        <url>https://github.com/T1WiLLi/NetConex</url>
+    </scm>
+
+    <!-- Dependencies, properties, build configuration, etc. -->
 
 </project>
