@@ -4,9 +4,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.util.concurrent.CompletableFuture;
 
-import qc.netconex.HttpRequester;
+import qc.netconex.NetConex;
 import qc.netconex.error.ApiRequestException;
 
 /**
@@ -18,7 +17,7 @@ import qc.netconex.error.ApiRequestException;
  * 
  * @author William Beaudin
  */
-public class Put extends HttpRequester {
+public class Put extends NetConex {
 
     /**
      * Constructs a new instance of {@code Put} with the specified
@@ -26,23 +25,10 @@ public class Put extends HttpRequester {
      * 
      * @param requester The {@code HttpRequester} instance.
      */
-    public Put(HttpRequester requester) {
+    public Put(NetConex requester) {
         super(requester.getBaseUrl());
         this.objectMapper = requester.getObjectMapper();
         this.getHeaders().putAll(requester.getHeaders());
-    }
-
-    /**
-     * Executes a PUT request asynchronously with the specified endpoint and
-     * request body.
-     * 
-     * @param endpoint    The endpoint for the PUT request.
-     * @param requestBody The request body object.
-     * @return A {@code CompletableFuture} containing the response from the PUT
-     *         request.
-     */
-    public CompletableFuture<String> executeAsync(String endpoint, Object requestBody) {
-        return super.executeAsync(endpoint, "PUT", requestBody);
     }
 
     /**
@@ -53,6 +39,7 @@ public class Put extends HttpRequester {
      * @return The response from the PUT request.
      * @throws ApiRequestException If there is an error executing the request.
      */
+    @Override
     public String execute(String endpoint, Object requestBody) throws ApiRequestException {
         try {
             HttpURLConnection connection = createConnection(endpoint, "PUT");

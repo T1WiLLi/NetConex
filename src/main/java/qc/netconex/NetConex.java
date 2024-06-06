@@ -168,15 +168,52 @@ public class NetConex implements Methods {
     }
 
     /**
+     * Determines the HTTP method based on the name of the class calling this
+     * method.
+     *
+     * @return The HTTP method as a string.
+     */
+    private String determineHttpMethod() {
+        String className = this.getClass().getSimpleName().toLowerCase();
+        switch (className) {
+            case "get":
+                return "GET";
+            case "post":
+                return "POST";
+            case "put":
+                return "PUT";
+            case "delete":
+                return "DELETE";
+            // Add other cases as necessary
+            default:
+                throw new IllegalArgumentException("Unsupported HTTP method for class: " + className);
+        }
+    }
+
+    /**
+     * Executes an HTTP request asynchronously with the specified endpoint and
+     * request body.
+     * The HTTP method is determined based on the class name.
+     *
+     * @param endpoint    The endpoint for the HTTP request.
+     * @param requestBody The request body object (can be null for requests without
+     *                    a body).
+     * @return A CompletableFuture containing the response from the HTTP request.
+     */
+    protected CompletableFuture<String> executeAsync(String endpoint, Object requestBody) {
+        String method = determineHttpMethod();
+        return executeAsync(endpoint, method, requestBody);
+    }
+
+    /**
      * Executes an HTTP request asynchronously with the specified endpoint, method,
      * and request body.
-     * 
+     *
      * @param endpoint    The endpoint for the HTTP request.
      * @param method      The HTTP method (e.g., GET, POST, PUT, DELETE).
      * @param requestBody The request body object (can be null for requests without
      *                    a body).
-     * @return A {@code CompletableFuture} containing the response from the HTTP
-     *         request.
+     * @return A CompletableFuture containing the response from the HTTP request.
      */
     protected CompletableFuture<String> executeAsync(String endpoint, String method, Object requestBody) {
         return CompletableFuture.supplyAsync(() -> {
@@ -195,9 +232,8 @@ public class NetConex implements Methods {
 
                 int responseCode = connection.getResponseCode();
 
-                if (responseCode == HttpURLConnection.HTTP_OK) {
-                    try (BufferedReader in = new BufferedReader(
-                            new InputStreamReader(connection.getInputStream()))) {
+                if (responseCode == HttpURLConnection.HTTP_OK || responseCode == HttpURLConnection.HTTP_CREATED) {
+                    try (BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
                         StringBuilder response = new StringBuilder();
                         String inputLine;
                         while ((inputLine = in.readLine()) != null) {

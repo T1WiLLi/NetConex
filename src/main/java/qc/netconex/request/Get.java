@@ -5,40 +5,29 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.util.concurrent.CompletableFuture;
 
-import qc.netconex.HttpRequester;
+import qc.netconex.NetConex;
 import qc.netconex.error.ApiRequestException;
 
 /**
  * The Get class provides functionality for executing GET requests.
  * 
  * <p>
- * This class extends the functionality of the {@link HttpRequester} class,
+ * This class extends the functionality of the {@link NetConex} class,
  * allowing for the execution of GET requests.
  * 
  * @author William Beaudin
  */
-public class Get extends HttpRequester {
+public class Get extends NetConex {
 
     /**
      * Constructs a new instance of Get with the specified HttpRequester.
      * 
      * @param requester The HttpRequester instance.
      */
-    public Get(HttpRequester requester) {
+    public Get(NetConex requester) {
         super(requester.getBaseUrl());
         this.objectMapper = requester.getObjectMapper();
         this.getHeaders().putAll(requester.getHeaders());
-    }
-
-    /**
-     * Executes a GET request asynchronously with the specified endpoint.
-     * 
-     * @param endpoint The endpoint for the GET request.
-     * @return A CompletableFuture containing the response from the GET request.
-     * @throws ApiRequestException If there is an error executing the request.
-     */
-    public CompletableFuture<String> executeAsync(String endpoint) throws ApiRequestException {
-        return executeAsync(endpoint, "GET", null);
     }
 
     /**

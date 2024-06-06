@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.util.concurrent.CompletableFuture;
 
-import qc.netconex.HttpRequester;
+import qc.netconex.NetConex;
 import qc.netconex.error.ApiRequestException;
 
 /**
@@ -13,33 +13,22 @@ import qc.netconex.error.ApiRequestException;
  * requests.
  * 
  * <p>
- * This class extends the functionality of the {@link HttpRequester} class,
+ * This class extends the functionality of the {@link NetConex} class,
  * allowing for the execution of Delete requests.
  * 
  * @author William Beaudin
  */
-public class Delete extends HttpRequester {
+public class Delete extends NetConex {
 
     /**
      * Constructs a new instance of Delete with the specified HttpRequester.
      * 
      * @param requester The HttpRequester instance.
      */
-    public Delete(HttpRequester requester) {
+    public Delete(NetConex requester) {
         super(requester.getBaseUrl());
         this.objectMapper = requester.getObjectMapper();
         this.getHeaders().putAll(requester.getHeaders());
-    }
-
-    /**
-     * Executes a DELETE request asynchronously with the specified endpoint.
-     * 
-     * @param endpoint The endpoint for the DELETE request.
-     * @return A CompletableFuture containing the response from the DELETE request.
-     * @throws ApiRequestException If there is an error executing the request.
-     */
-    public CompletableFuture<String> executeAsync(String endpoint) throws ApiRequestException {
-        return executeAsync(endpoint, "DELETE", null);
     }
 
     /**

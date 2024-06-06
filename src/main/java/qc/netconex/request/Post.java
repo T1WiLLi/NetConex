@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
-import qc.netconex.HttpRequester;
+import qc.netconex.NetConex;
 import qc.netconex.error.ApiRequestException;
 
 /**
@@ -22,7 +22,7 @@ import qc.netconex.error.ApiRequestException;
  * 
  * @author William Beaudin
  */
-public class Post extends HttpRequester {
+public class Post extends NetConex {
 
     /**
      * Constructs a new instance of {@code Post} with the specified
@@ -30,23 +30,10 @@ public class Post extends HttpRequester {
      * 
      * @param requester The {@code HttpRequester} instance.
      */
-    public Post(HttpRequester requester) {
+    public Post(NetConex requester) {
         super(requester.getBaseUrl());
         this.objectMapper = super.getObjectMapper();
         this.getHeaders().putAll(requester.getHeaders());
-    }
-
-    /**
-     * Executes a POST request asynchronously with the specified endpoint and
-     * request body.
-     * 
-     * @param endpoint    The endpoint for the POST request.
-     * @param requestBody The request body object.
-     * @return A {@code CompletableFuture} containing the response from the POST
-     *         request.
-     */
-    public CompletableFuture<String> executeAsync(String endpoint, Object requestBody) {
-        return super.executeAsync(endpoint, "POST", requestBody);
     }
 
     /**
