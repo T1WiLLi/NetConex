@@ -14,17 +14,21 @@ import qc.netconex.HttpRequester;
 import qc.netconex.error.ApiRequestException;
 
 /**
- * The Post class provides functionality for executing POST requests.
+ * The {@code Post} class provides functionality for executing POST requests.
+ * 
+ * <p>
+ * This class extends {@code HttpRequester} and inherits its methods for making
+ * HTTP requests.
  * 
  * @author William Beaudin
  */
 public class Post extends HttpRequester {
 
     /**
-     * Constructs a new instance of Post with the specified HttpRequester.
+     * Constructs a new instance of {@code Post} with the specified
+     * {@code HttpRequester}.
      * 
-     * @param requester The HttpRequester instance.
-     * @author William Beaudin
+     * @param requester The {@code HttpRequester} instance.
      */
     public Post(HttpRequester requester) {
         super(requester.getBaseUrl());
@@ -38,11 +42,11 @@ public class Post extends HttpRequester {
      * 
      * @param endpoint    The endpoint for the POST request.
      * @param requestBody The request body object.
-     * @return A CompletableFuture containing the response from the POST request.
-     * @author William Beaudin
+     * @return A {@code CompletableFuture} containing the response from the POST
+     *         request.
      */
     public CompletableFuture<String> executeAsync(String endpoint, Object requestBody) {
-        return executeAsync(endpoint, "POST", requestBody);
+        return super.executeAsync(endpoint, "POST", requestBody);
     }
 
     /**
@@ -52,8 +56,6 @@ public class Post extends HttpRequester {
      * @param requestBody The request body object.
      * @return The response from the POST request.
      * @throws ApiRequestException If there is an error executing the request.
-     * @see Methods#execute(String, Object)
-     * @author William Beaudin
      */
     @Override
     public String execute(String endpoint, Object requestBody) throws ApiRequestException {
@@ -96,8 +98,6 @@ public class Post extends HttpRequester {
      * @param classType The class type representing the request body.
      * @return A map representing the request body.
      * @throws Exception If there is an error building the request body.
-     * @see Methods#buildRequestBodyFromArray(String[], Class)
-     * @author William Beaudin
      */
     public Map<String, Object> buildRequestBodyFromArray(String[] array, Class<?> classType) throws Exception {
         Map<String, Object> requestBody = new HashMap<>();

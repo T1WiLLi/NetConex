@@ -4,27 +4,45 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.util.concurrent.CompletableFuture;
 
 import qc.netconex.HttpRequester;
 import qc.netconex.error.ApiRequestException;
 
 /**
- * The Put class provides functionality for executing PUT requests.
+ * The {@code Put} class provides functionality for executing PUT requests.
+ * 
+ * <p>
+ * This class extends {@code HttpRequester} and inherits its methods for making
+ * HTTP requests.
  * 
  * @author William Beaudin
  */
 public class Put extends HttpRequester {
 
     /**
-     * Constructs a new instance of Put with the specified HttpRequester.
+     * Constructs a new instance of {@code Put} with the specified
+     * {@code HttpRequester}.
      * 
-     * @param requester The HttpRequester instance.
-     * @author William Beaudin
+     * @param requester The {@code HttpRequester} instance.
      */
     public Put(HttpRequester requester) {
         super(requester.getBaseUrl());
         this.objectMapper = requester.getObjectMapper();
         this.getHeaders().putAll(requester.getHeaders());
+    }
+
+    /**
+     * Executes a PUT request asynchronously with the specified endpoint and
+     * request body.
+     * 
+     * @param endpoint    The endpoint for the PUT request.
+     * @param requestBody The request body object.
+     * @return A {@code CompletableFuture} containing the response from the PUT
+     *         request.
+     */
+    public CompletableFuture<String> executeAsync(String endpoint, Object requestBody) {
+        return super.executeAsync(endpoint, "PUT", requestBody);
     }
 
     /**
@@ -34,8 +52,6 @@ public class Put extends HttpRequester {
      * @param requestBody The request body object.
      * @return The response from the PUT request.
      * @throws ApiRequestException If there is an error executing the request.
-     * @see Methods#execute(String, Object)
-     * @author William Beaudin
      */
     public String execute(String endpoint, Object requestBody) throws ApiRequestException {
         try {

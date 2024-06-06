@@ -11,6 +11,10 @@ import qc.netconex.error.ApiRequestException;
 /**
  * The Get class provides functionality for executing GET requests.
  * 
+ * <p>
+ * This class extends the functionality of the {@link HttpRequester} class,
+ * allowing for the execution of GET requests.
+ * 
  * @author William Beaudin
  */
 public class Get extends HttpRequester {
@@ -19,7 +23,6 @@ public class Get extends HttpRequester {
      * Constructs a new instance of Get with the specified HttpRequester.
      * 
      * @param requester The HttpRequester instance.
-     * @author William Beaudin
      */
     public Get(HttpRequester requester) {
         super(requester.getBaseUrl());
@@ -32,9 +35,9 @@ public class Get extends HttpRequester {
      * 
      * @param endpoint The endpoint for the GET request.
      * @return A CompletableFuture containing the response from the GET request.
-     * @author William Beaudin
+     * @throws ApiRequestException If there is an error executing the request.
      */
-    public CompletableFuture<String> executeAsync(String endpoint) {
+    public CompletableFuture<String> executeAsync(String endpoint) throws ApiRequestException {
         return executeAsync(endpoint, "GET", null);
     }
 
@@ -44,7 +47,6 @@ public class Get extends HttpRequester {
      * @param endpoint The endpoint for the GET request.
      * @return The response from the GET request.
      * @throws ApiRequestException If there is an error executing the request.
-     * @author William Beaudin
      */
     public String execute(String endpoint) throws ApiRequestException {
         try {
@@ -79,7 +81,6 @@ public class Get extends HttpRequester {
      * @return The deserialized response object.
      * @throws ApiRequestException If there is an error executing the request or
      *                             deserializing the response.
-     * @author William Beaudin
      */
     public <T> T executeAndDeserialize(String endPoint, Class<T> responseType) throws ApiRequestException {
         try {

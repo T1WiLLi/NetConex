@@ -27,22 +27,42 @@ import qc.netconex.request.Post;
 import qc.netconex.request.Put;
 
 /**
- * The HttpRequester class provides functionality to make HTTP requests.
+ * The {@code HttpRequester} class provides functionality to make HTTP requests.
  * It supports GET, POST, PUT, and DELETE methods.
  * 
+ * <p>
+ * This class uses Jackson for JSON serialization/deserialization and supports
+ * setting headers and timeouts for requests.
+ * 
  * @author William Beaudin
+ * @version 1.1
  */
 public class HttpRequester implements Methods {
+    /**
+     * The base URL for HTTP requests.
+     */
     private String baseUrl;
+
+    /**
+     * A map containing headers for the HTTP requests.
+     */
     private Map<String, String> headers = new HashMap<>();
+
+    /**
+     * The ObjectMapper used for JSON serialization/deserialization.
+     */
     protected ObjectMapper objectMapper;
+
+    /**
+     * The timeout duration for HTTP requests in milliseconds.
+     */
     private int timeout;
 
     /**
-     * Constructs a new instance of HttpRequester with the specified base URL.
+     * Constructs a new instance of {@code HttpRequester} with the specified base
+     * URL.
      * 
      * @param baseUrl The base URL for HTTP requests.
-     * @author William Beaudin
      */
     public HttpRequester(String baseUrl) {
         this.baseUrl = baseUrl;
@@ -51,11 +71,13 @@ public class HttpRequester implements Methods {
     }
 
     /**
-     * Constructs a new instance of HttpRequester with the specified base URL.
+     * Constructs a new instance of {@code HttpRequester} with the specified base
+     * URL
+     * and timeout.
      * 
      * @param baseUrl The base URL for HTTP requests.
-     * @param timeout The specified time in millis before timeout for HTTP requests.
-     * @author William Beaudin
+     * @param timeout The specified time in milliseconds before timeout for HTTP
+     *                requests.
      */
     public HttpRequester(String baseUrl, int timeout) {
         this.baseUrl = baseUrl;
@@ -67,7 +89,6 @@ public class HttpRequester implements Methods {
      * Returns the base URL for HTTP requests.
      * 
      * @return The base URL.
-     * @author William Beaudin
      */
     public String getBaseUrl() {
         return baseUrl;
@@ -77,17 +98,15 @@ public class HttpRequester implements Methods {
      * Returns the headers set for the HTTP requester.
      * 
      * @return A map containing headers.
-     * @author William Beaudin
      */
     public Map<String, String> getHeaders() {
         return headers;
     }
 
     /**
-     * Returns the ObjectMapper used for JSON serialization/deserialization.
+     * Returns the {@code ObjectMapper} used for JSON serialization/deserialization.
      * 
-     * @return The ObjectMapper instance.
-     * @author William Beaudin
+     * @return The {@code ObjectMapper} instance.
      */
     public ObjectMapper getObjectMapper() {
         return objectMapper;
@@ -98,7 +117,6 @@ public class HttpRequester implements Methods {
      * 
      * @param key   The header key.
      * @param value The header value.
-     * @author William Beaudin
      */
     public void setHeader(String key, String value) {
         headers.put(key, value);
@@ -108,7 +126,6 @@ public class HttpRequester implements Methods {
      * Sets the timeout duration for HTTP requests.
      * 
      * @param timeout The timeout duration in milliseconds.
-     * @author William Beaudin
      */
     public void setTimeout(int timeout) {
         this.timeout = timeout;
@@ -118,23 +135,22 @@ public class HttpRequester implements Methods {
      * Retrieves the timeout duration for HTTP requests.
      * 
      * @return The timeout duration in milliseconds.
-     * @author William Beaudin
      */
     public int getTimeout() {
         return timeout;
     }
 
     /**
-     * Creates and configures a new HttpURLConnection for the specified endpoint and
+     * Creates and configures a new {@code HttpURLConnection} for the specified
+     * endpoint and
      * HTTP method.
      * 
      * @param endpoint The endpoint relative to the base URL.
      * @param method   The HTTP method (e.g., GET, POST, PUT, DELETE).
-     * @return HttpURLConnection configured for the specified endpoint and method.
-     * @throws ApiRequestException If there is an error creating the connection.
-     * @throws IOException
-     * @throws URISyntaxException
-     * @author William Beaudin
+     * @return {@code HttpURLConnection} configured for the specified endpoint and
+     *         method.
+     * @throws IOException        If an I/O exception occurs.
+     * @throws URISyntaxException If the URL is malformed.
      */
     protected HttpURLConnection createConnection(String endpoint, String method)
             throws IOException, URISyntaxException {
@@ -159,8 +175,8 @@ public class HttpRequester implements Methods {
      * @param method      The HTTP method (e.g., GET, POST, PUT, DELETE).
      * @param requestBody The request body object (can be null for requests without
      *                    a body).
-     * @return A CompletableFuture containing the response from the HTTP request.
-     * @author William Beaudin
+     * @return A {@code CompletableFuture} containing the response from the HTTP
+     *         request.
      */
     protected CompletableFuture<String> executeAsync(String endpoint, String method, Object requestBody) {
         return CompletableFuture.supplyAsync(() -> {
@@ -205,7 +221,6 @@ public class HttpRequester implements Methods {
      * @return The formatted JSON string.
      * @throws JsonParsingException    If there is an error parsing the JSON.
      * @throws JsonFormattingException If there is an error formatting the JSON.
-     * @author William Beaudin
      */
     @Override
     public String formatResponse(String jsonResponse) throws JsonParsingException, JsonFormattingException {
@@ -224,7 +239,6 @@ public class HttpRequester implements Methods {
      * @return A map representing the request body.
      * @throws ApiRequestException If there is an error building the request body.
      * @see Methods#buildRequestBodyFromObject(Object)
-     * @author William Beaudin
      */
     @Override
     public Map<String, Object> buildRequestBodyFromObject(Object object) throws ApiRequestException {
@@ -238,7 +252,8 @@ public class HttpRequester implements Methods {
 
     /**
      * Executes a GET request with the specified endpoint and object (deprecated).
-     * This method is deprecated and will throw an UnsupportedOperationException if
+     * This method is deprecated and will throw an
+     * {@code UnsupportedOperationException} if
      * called.
      * 
      * @param endpoint The endpoint for the GET request.
@@ -246,8 +261,7 @@ public class HttpRequester implements Methods {
      * @return The response from the GET request.
      * @throws UnsupportedOperationException If the method is called, as it is
      *                                       deprecated.
-     * @throws ApiRequestException
-     * @author William Beaudin
+     * @throws ApiRequestException           If there is an API request error.
      */
     @Override
     @Deprecated
@@ -256,40 +270,36 @@ public class HttpRequester implements Methods {
     }
 
     /**
-     * Returns a new instance of the Get request handler.
+     * Returns a new instance of the {@code Get} request handler.
      * 
-     * @return A new instance of the Get class.
-     * @author William Beaudin
+     * @return A new instance of the {@code Get} class.
      */
     public Get get() {
         return new Get(this);
     }
 
     /**
-     * Returns a new instance of the Post request handler.
+     * Returns a new instance of the {@code Post} request handler.
      * 
-     * @return A new instance of the Post class.
-     * @author William Beaudin
+     * @return A new instance of the {@code Post} class.
      */
     public Post post() {
         return new Post(this);
     }
 
     /**
-     * Returns a new instance of the Put request handler.
+     * Returns a new instance of the {@code Put} request handler.
      * 
-     * @return A new instance of the Put class.
-     * @author William Beaudin
+     * @return A new instance of the {@code Put} class.
      */
     public Put put() {
         return new Put(this);
     }
 
     /**
-     * Returns a new instance of the Delete request handler.
+     * Returns a new instance of the {@code Delete} request handler.
      * 
-     * @return A new instance of the Delete class.
-     * @author William Beaudin
+     * @return A new instance of the {@code Delete} class.
      */
     public Delete delete() {
         return new Delete(this);

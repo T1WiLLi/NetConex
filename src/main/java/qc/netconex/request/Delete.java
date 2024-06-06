@@ -9,7 +9,12 @@ import qc.netconex.HttpRequester;
 import qc.netconex.error.ApiRequestException;
 
 /**
- * The Delete class provides functionality for executing DELETE requests.
+ * The {@code DELETE} class provides functionality for executing Delete
+ * requests.
+ * 
+ * <p>
+ * This class extends the functionality of the {@link HttpRequester} class,
+ * allowing for the execution of Delete requests.
  * 
  * @author William Beaudin
  */
@@ -19,7 +24,6 @@ public class Delete extends HttpRequester {
      * Constructs a new instance of Delete with the specified HttpRequester.
      * 
      * @param requester The HttpRequester instance.
-     * @author William Beaudin
      */
     public Delete(HttpRequester requester) {
         super(requester.getBaseUrl());
@@ -32,9 +36,9 @@ public class Delete extends HttpRequester {
      * 
      * @param endpoint The endpoint for the DELETE request.
      * @return A CompletableFuture containing the response from the DELETE request.
-     * @author William Beaudin
+     * @throws ApiRequestException If there is an error executing the request.
      */
-    public CompletableFuture<String> executeAsync(String endpoint) {
+    public CompletableFuture<String> executeAsync(String endpoint) throws ApiRequestException {
         return executeAsync(endpoint, "DELETE", null);
     }
 
@@ -44,7 +48,6 @@ public class Delete extends HttpRequester {
      * @param endpoint The endpoint for the DELETE request.
      * @return The response from the DELETE request.
      * @throws ApiRequestException If there is an error executing the request.
-     * @author William Beaudin
      */
     public String execute(String endpoint) throws ApiRequestException {
         try {

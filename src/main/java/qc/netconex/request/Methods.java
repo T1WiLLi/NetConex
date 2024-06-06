@@ -5,10 +5,15 @@ import java.util.Map;
 import qc.netconex.error.ApiRequestException;
 
 /**
- * The Methods interface defines common methods to be implemented by HTTP
+ * The {@code Methods} interface defines common methods to be implemented by
+ * HTTP
  * request handlers (e.g., Get, Post, Put, Delete).
  * These methods provide functionality for formatting responses, executing
  * requests, and building request bodies.
+ * 
+ * <p>
+ * This interface serves as a contract for classes implementing HTTP request
+ * functionality.
  * 
  * @author William Beaudin
  */
@@ -21,7 +26,6 @@ public interface Methods {
      * @return The formatted JSON string.
      * @throws ApiRequestException If there is an error parsing or formatting the
      *                             JSON.
-     * @author William Beaudin
      */
     public String formatResponse(String jsonResponse) throws ApiRequestException;
 
@@ -32,7 +36,6 @@ public interface Methods {
      * @param object   The request body object.
      * @return The response from the HTTP request.
      * @throws ApiRequestException If there is an error executing the request.
-     * @author William Beaudin
      */
     public String execute(String endpoint, Object object) throws ApiRequestException;
 
@@ -42,7 +45,6 @@ public interface Methods {
      * @param object The object to be serialized into a request body.
      * @return A map representing the request body.
      * @throws ApiRequestException If there is an error building the request body.
-     * @author William Beaudin
      */
     public Map<String, Object> buildRequestBodyFromObject(Object object) throws ApiRequestException;
 }
