@@ -12,11 +12,5 @@ NetConex is a Java library that provides easy-to-use functionality for making HT
 
 ## Installation
 
-You can include NetConex in your Java project by adding it as a dependency in your `pom.xml`:
-
-```xml
-<dependency>
-    <groupId>com.example</groupId>
-    <artifactId>netconex</artifactId>
-    <version>1.0.0</version>
-</dependency>
+I'm currently working on that, but it will soon be available on Maven Central :)
+In the meantime, you can use the .Jar file (it's a modular library) so you will need to include a module-info.java
