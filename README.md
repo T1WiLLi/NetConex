@@ -177,6 +177,69 @@ This function takes an object of you're choice and transform it into a Map<Strin
 We basically just map the values of the array to the key of the object.
 
 
+## Async function !
+
+Quick word on them, they do work, they are complicated to work with, once you understand them, you will have a great power. 
+
+```java 
+package qc.netconex;
+
+import java.util.concurrent.CompletableFuture;
+
+import qc.netconex.error.JsonFormattingException;
+import qc.netconex.error.JsonParsingException;
+import qc.netconex.request.Get;
+
+public class Main {
+
+    public static void main(String[] args) {
+        NetConex netConex = new NetConex("https://dummyjson.com");
+
+        Get getRequest = new Get(netConex);
+        CompletableFuture<String> formattedJson = getRequest.executeAsync("/users", null).thenApply(res -> {
+            try {
+                return getRequest.formatResponse(res);
+            } catch (JsonParsingException | JsonFormattingException e) {
+                e.printStackTrace();
+            }
+            return null;
+        });
+        System.out.println(formattedJson.join()); // Join function waits for the request to finish then proceed
+    }
+}
+
+```
+
+You could also directly process the data : 
+
+```java
+package qc.netconex;
+
+import qc.netconex.error.JsonFormattingException;
+import qc.netconex.error.JsonParsingException;
+import qc.netconex.request.Get;
+
+public class Main {
+
+    public static void main(String[] args) {
+        NetConex netConex = new NetConex("https://dummyjson.com");
+
+        Get getRequest = new Get(netConex);
+        getRequest.executeAsync("/users", null).thenApply(res -> {
+            try {
+                return getRequest.formatResponse(res);
+            } catch (JsonParsingException | JsonFormattingException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }).thenAccept(formatResponse -> {
+            System.out.println(formatResponse);
+        });
+    }
+}
+```
+
+Obviously here, we are 100% using lamba expression, which you should learn about if you still don't use them ! The pros of doing things this way is that you can start processing right away.
 
 As for the rest of the request they are all pretty much the same as those two, also you must take into account that the requestBody when calling ```executeAsync``` from the NetConex class can be ```NULL```.
 
