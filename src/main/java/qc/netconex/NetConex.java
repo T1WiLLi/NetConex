@@ -27,7 +27,7 @@ import qc.netconex.request.Post;
 import qc.netconex.request.Put;
 
 /**
- * The {@code HttpRequester} class provides functionality to make HTTP requests.
+ * The {@code NetConex} class provides functionality to make HTTP requests.
  * It supports GET, POST, PUT, and DELETE methods.
  * 
  * <p>
@@ -37,7 +37,7 @@ import qc.netconex.request.Put;
  * @author William Beaudin
  * @version 1.1
  */
-public class HttpRequester implements Methods {
+public class NetConex implements Methods {
     /**
      * The base URL for HTTP requests.
      */
@@ -64,7 +64,7 @@ public class HttpRequester implements Methods {
      * 
      * @param baseUrl The base URL for HTTP requests.
      */
-    public HttpRequester(String baseUrl) {
+    public NetConex(String baseUrl) {
         this.baseUrl = baseUrl;
         this.objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
         this.timeout = Integer.MAX_VALUE;
@@ -79,7 +79,7 @@ public class HttpRequester implements Methods {
      * @param timeout The specified time in milliseconds before timeout for HTTP
      *                requests.
      */
-    public HttpRequester(String baseUrl, int timeout) {
+    public NetConex(String baseUrl, int timeout) {
         this.baseUrl = baseUrl;
         this.objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
         this.timeout = timeout;
