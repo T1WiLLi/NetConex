@@ -8,7 +8,6 @@ import java.net.HttpURLConnection;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.CompletableFuture;
 
 import qc.netconex.NetConex;
 import qc.netconex.error.ApiRequestException;

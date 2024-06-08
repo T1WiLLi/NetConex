@@ -24,22 +24,13 @@
         </developer>
     </developers>
 
-    <scm>
-        <connection>scm:git:https://github.com/T1WiLLi/NetConex.git</connection>
-        <developerConnection>scm:git:https://github.com/T1WiLLi/NetConex.git</developerConnection>
-        <url>https://github.com/T1WiLLi/NetConex</url>
-        <tag>HEAD</tag>
-    </scm>
 
     <distributionManagement>
         <repository>
             <id>github</id>
+            <name>GitHub Packages</name>
             <url>https://github.com/T1WiLLi/NetConex</url>
         </repository>
-        <snapshotRepository>
-            <id>github</id>
-            <url>https://github.com/T1WiLLi/NetConex</url>
-        </snapshotRepository>
     </distributionManagement>
 
     <properties>
