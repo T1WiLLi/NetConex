@@ -30,7 +30,7 @@
         <repository>
             <id>github</id>
             <name>GitHub Packages</name>
-            <url>https://github.com/T1WiLLi/NetConex</url>
+            <url>https://maven.pkg.github.com/T1WiLLi/NetConex</url>
         </repository>
     </distributionManagement>
 
